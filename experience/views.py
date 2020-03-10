@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from . import forms
 import json
+from . import data_handling
 
 # Create your views here.
 def index(request):
@@ -18,6 +19,8 @@ def index(request):
                 print("File: " + request.FILES['file'].name)
             else:
                 data = json.loads(request.FILES['file'].read())
-                print(data)
+                experience = data_handling.ExperienceReport(**data)
+                experience.reportLoop()
+                print(experience.request_data)
 
-    return render(request, "experience/index.html", {'form': form})
+    return render(request, "app/index.html", {'form': form})

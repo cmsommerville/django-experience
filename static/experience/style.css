@@ -1,55 +1,118 @@
 html {
-    font-family: "Times New Roman", sans-serif, serif;
-    background-color: #3588a4;
+    height: 100%;
 }
+
 body {
-  background-color: #3588a4;
-  text-align: center;
-}
-
-.experience-logo {
-    margin: auto;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    display: block;
-    width: 150px;
-    border-radius: 50%;
-}
-
-.container.signin-container {
-    margin-top: 3%;
-    max-width: 700px;
-}
-
-.card {
-/*    background-color: #444;*/
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
     background-image: linear-gradient(to bottom right, #e6e6e6, #ecf2f9);
-    color:#000000;
+    /*ecf2f9*/
 }
 
-.experience-form {
-    max-width: 350px;
-    margin: auto;
+.overflow-auto {
+    max-height: 500px;
 }
 
-.form-input-button {
-  color: #000;
-}
-
-#file-selector {
-  margin: auto;
-  display: block;
-  color: #fff;
-  text-align:center;
-  border-color: #235a6d;
-  border-radius: 5px;
-  background: #235a6d;
-}
-
-
-button.signin-button {
+.my-jumbotron {
+    background-color: #3588a4;
     color: #ffffff;
-    background-color:#235a6d;
-    border-color:#235a6d;
-    width: 100%;
+    text-shadow: 0px 10px 20px #000000;
+}
+
+.jumbotron-text {
+    margin-left: inherit; 
+}
+
+.list-group-item.active {
+    background-color: #00a7e1;
+    border-color: #00a7e1;
+    background: rgba(0, 0, 0.0.5);
+    color: #fff;
+}
+
+.table-experience-header {
+    background-color: #235a6d;
+    font-weight: bold;
+    color: white;
+}
+
+.table-experience-loss-ratio {
+    background-color: #235a6d;
+    font-weight: bold;
+    /*#00a7e1; */
+    color: white;
+}
+
+td,
+th {
+    text-align: right;
+}
+
+.table-row {
+    text-align: left;
+}
+
+#img-logo {
+    display: block;
+    border-radius: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.active {
+    text-shadow: 0px 0px 0px #000000;
+}
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+/* The sidebar menu */
+.sidenav {
+    height: 100%;
+    /* Full-height: remove this if you want "auto" height */
+    width: 15%;
+    /* Set the width of the sidebar */
+    position: fixed;
+    /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1;
+    /* Stay on top */
+    top: 0;
+    /* Stay at the top */
+    left: 0;
+    background-color: #235a6d;
+    overflow-x: hidden;
+    /* Disable horizontal scroll */
+    padding-top: 20px;
+    text-shadow: 0px 2px 3px #000000;
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    text-shadow: 0px 0px #000000;
+}
+
+
+/* Style page content */
+.main-body {
+    margin-left: 15%;
+    /* Same as the width of the sidebar */
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
 }

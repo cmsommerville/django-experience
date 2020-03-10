@@ -1,0 +1,55 @@
+html {
+    font-family: "Times New Roman", sans-serif, serif;
+    background-color: #3588a4;
+}
+body {
+  background-color: #3588a4;
+  text-align: center;
+}
+
+.experience-logo {
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    display: block;
+    width: 150px;
+    border-radius: 50%;
+}
+
+.container.signin-container {
+    margin-top: 3%;
+    max-width: 700px;
+}
+
+.card {
+/*    background-color: #444;*/
+    background-image: linear-gradient(to bottom right, #e6e6e6, #ecf2f9);
+    color:#000000;
+}
+
+.experience-form {
+    max-width: 350px;
+    margin: auto;
+}
+
+.form-input-button {
+  color: #000;
+}
+
+#file-selector {
+  margin: auto;
+  display: block;
+  color: #fff;
+  text-align:center;
+  border-color: #235a6d;
+  border-radius: 5px;
+  background: #235a6d;
+}
+
+
+button.signin-button {
+    color: #ffffff;
+    background-color:#235a6d;
+    border-color:#235a6d;
+    width: 100%;
+}
