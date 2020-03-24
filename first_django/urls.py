@@ -21,4 +21,6 @@ from experience import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     path('admin/', admin.site.urls),
+    path('reports/<str:report_name>/', views.reports, name='reports'),
+    path('runlog/', views.runlog, name='runlog'),
 ]

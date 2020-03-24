@@ -1,7 +1,10 @@
 from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.template import Context, loader
 from . import forms
 import json
 from . import data_handling
+from experience.models.batch import Batch
 
 # Create your views here.
 def index(request):
@@ -12,15 +15,23 @@ def index(request):
 
         if form.is_valid():
             if request.FILES['file'] is None:
-                print("From Date: " + str(form.cleaned_data['fromdate']))
-                print("Thru Date: " + str(form.cleaned_data['thrudate']))
-                print("Group Number: " + form.cleaned_data['grpnum'])
-                print("Report Title: " + form.cleaned_data['title'])
-                print("File: " + request.FILES['file'].name)
+                pass
             else:
                 data = json.loads(request.FILES['file'].read())
-                experience = data_handling.ExperienceReport(**data)
-                experience.reportLoop()
-                print(experience.request_data)
+                batch = Batch(**data)
+                batch.run()
+
+        return render(request, "app/runlog.html", {"log": batch.batchLog})
+        #return HttpResponseRedirect("/runlog/")
 
     return render(request, "app/index.html", {'form': form})
+
+
+
+# Create your views here.
+def runlog(request):
+    return render(request, "app/runlog.html")
+
+# Create your views here.
+def reports(request, report_name):
+    return render(request, report_name + ".html")
