@@ -20,9 +20,10 @@ def index(request):
                 data = json.loads(request.FILES['file'].read())
                 batch = Batch(**data)
                 batch.run()
+                request.session["REPORT_LOG"] = batch.batchLog
 
-        return render(request, "app/runlog.html", {"log": batch.batchLog})
-        #return HttpResponseRedirect("/runlog/")
+        #return render(request, "app/runlog.html", {"log": request.session["REPORT_LOG"]})
+        return HttpResponseRedirect("/runlog/")
 
     return render(request, "app/index.html", {'form': form})
 
@@ -30,7 +31,8 @@ def index(request):
 
 # Create your views here.
 def runlog(request):
-    return render(request, "app/runlog.html")
+    context = {"log": request.session["REPORT_LOG"]}
+    return render(request, "app/runlog.html", context = context)
 
 # Create your views here.
 def reports(request, report_name):

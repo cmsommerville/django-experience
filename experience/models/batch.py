@@ -71,7 +71,7 @@ class Batch():
 					report_filename = '-'.join([title_prefix, slugify(report.output.get("title", default_title))]) + ".html"
 
 				rendered_report = render_to_string(self.html_template, report.output)
-
+				print(report.output["groups"])
 				try:
 					fileloc = os.path.join(settings.REPORTS_DIR, report_filename)
 				except:
@@ -85,7 +85,7 @@ class Batch():
 					f.write(rendered_report)
 
 				wrapper.set_status("Success")
-				wrapper.set_link(fileloc)
+				wrapper.set_link("/reports/" + report_filename.split(".")[0])
 				logList.append(wrapper.display())
 			except err:
 				wrapper.set_status("Failure", reason = "Could not render report", err = str(err))

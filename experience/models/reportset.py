@@ -347,7 +347,7 @@ WHERE
 
 				try:
 					report = Report(data = data_input, title = title, groupData = df_groups, fromdate = self.fromdate, thrudate = self.thrudate)
-
+					
 				except Exception as err:
 					wrapper = ReportWrapper(**{
 						"reportSetID": self.id,
