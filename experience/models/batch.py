@@ -71,7 +71,7 @@ class Batch():
 					report_filename = '-'.join([title_prefix, slugify(report.output.get("title", default_title))]) + ".html"
 
 				rendered_report = render_to_string(self.html_template, report.output)
-				print(report.output["groups"])
+
 				try:
 					fileloc = os.path.join(settings.REPORTS_DIR, report_filename)
 				except:
@@ -110,7 +110,7 @@ class Batch():
 				reportList = report_set.reportList
 
 				# pass report list into renderer method
-				logList = self.renderReports(reportList, title_prefix = self.batchTimeStamp)
+				logList = self.renderReports(reportList, title_prefix = '-'.join([self.batchTimeStamp, str(i)]))
 
 
 				# append the log list for the report list to the entire batch log

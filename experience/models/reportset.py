@@ -223,6 +223,9 @@ WHERE
 		try:
 			_ = self.__getGroupData(self.grpnums_input, conn)
 
+			if len(set(self.df_groups["GRPUID"])) == 1:
+				self.title = self.df_groups["PRMGRPNAME"].values[0]
+
 			if self.reportType in ["B", "E"]:
 				_ = self.__getExperienceData(self.grpnums_input, self.fromdate, self.thrudate, conn)
 				exp = self.df_experience.groupby(["LOB", "LOBDESC", "EXPYR"], as_index = False).sum()
@@ -347,7 +350,7 @@ WHERE
 
 				try:
 					report = Report(data = data_input, title = title, groupData = df_groups, fromdate = self.fromdate, thrudate = self.thrudate)
-					
+
 				except Exception as err:
 					wrapper = ReportWrapper(**{
 						"reportSetID": self.id,

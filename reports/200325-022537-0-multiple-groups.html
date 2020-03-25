@@ -1,5 +1,5 @@
 <!doctype html>
-{% load static %}
+
 <html lang="en">
 
 <head>
@@ -154,18 +154,26 @@
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-          {% for item in experience %}
-          <a class="list-group-item-action {% if forloop.counter == 1%}active{% endif %}" id="list-{{ forloop.counter }}-list" data-toggle="tab" href="#list-{{ forloop.counter }}" role="tab">-{{ item.name }}</a>
-          {% endfor %}
+          
+          <a class="list-group-item-action active" id="list-1-list" data-toggle="tab" href="#list-1" role="tab">-Accident</a>
+          
+          <a class="list-group-item-action " id="list-2-list" data-toggle="tab" href="#list-2" role="tab">-Critical Illness</a>
+          
+          <a class="list-group-item-action " id="list-3-list" data-toggle="tab" href="#list-3" role="tab">-Hospital Indemnity</a>
+          
         </div>
 
         <button class="dropdown-btn">Utilization
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-          {% for item in utilization %}
-          <a class="list-group-item-action" id="list-ut-{{ forloop.counter }}-list" data-toggle="tab" href="#list-ut-{{ forloop.counter }}" role="tab">-{{ item.name }}</a>
-          {% endfor %}
+          
+          <a class="list-group-item-action" id="list-ut-1-list" data-toggle="tab" href="#list-ut-1" role="tab">-Accident</a>
+          
+          <a class="list-group-item-action" id="list-ut-2-list" data-toggle="tab" href="#list-ut-2" role="tab">-Critical Illness</a>
+          
+          <a class="list-group-item-action" id="list-ut-3-list" data-toggle="tab" href="#list-ut-3" role="tab">-Disability</a>
+          
         </div>
     </div>
 
@@ -174,8 +182,8 @@
     <div class="main-body">
         <div class="jumbotron jumbotron-fluid my-jumbotron">
             <div class="container jumbotron-text">
-                <h1 class="display-4">{{ title }}</h1>
-                <p class="lead">{{ fromdate }} through {{ thrudate }}</p>
+                <h1 class="display-4">Multiple Groups</h1>
+                <p class="lead">2017-01-01 through 2019-12-31</p>
             </div>
         </div>
 
@@ -185,17 +193,21 @@
                 <div class="col"></div>
                 <div class="col-11">
                     <div class="tab-content" id="nav-tabContent">
-                        {% for item in experience %}
-                        <div class="tab-pane fade show {% if forloop.counter == 1%}active{% endif %}" id="list-{{ forloop.counter }}" role="tabpanel" aria-labelledby="list-{{ forloop.counter }}-list">
+                        
+                        <div class="tab-pane fade show active" id="list-1" role="tabpanel" aria-labelledby="list-1-list">
                             <table class="table table-hover">
                                 <thead>
                                     <tr class="table-experience-header">
 
                                         <th scope="col"></th>
 
-                                        {% for year in item.Year %}
-                                        <th scope="col">{{ year }}</th>
-                                        {% endfor %}
+                                        
+                                        <th scope="col">2017</th>
+                                        
+                                        <th scope="col">2018</th>
+                                        
+                                        <th scope="col">2019</th>
+                                        
 
                                     </tr>
                                 </thead>
@@ -203,28 +215,150 @@
                                     <tr>
                                         <td class="table-row">Earned Premium</td>
 
-                                        {% for ep_value in item.EarnedPremium %}
-                                        <td>{{ ep_value }}</td>
-                                        {% endfor %}
+                                        
+                                        <td>$141,640.12</td>
+                                        
+                                        <td>$161,766.93</td>
+                                        
+                                        <td>$158,760.03</td>
+                                        
                                     </tr>
                                     <tr>
                                         <td class="table-row">Incurred Claims</td>
 
-                                        {% for clm_value in item.IncurredClaims %}
-                                        <td>{{ clm_value }}</td>
-                                        {% endfor %}
+                                        
+                                        <td>$108,758.56</td>
+                                        
+                                        <td>$117,821.74</td>
+                                        
+                                        <td>$89,864.15</td>
+                                        
                                     </tr>
                                     <tr class="table-experience-loss-ratio">
                                         <td class="table-row">Loss Ratio</td>
 
-                                        {% for lr_value in item.LossRatio %}
-                                        <td>{{ lr_value }}</td>
-                                        {% endfor %}
+                                        
+                                        <td>76.79%</td>
+                                        
+                                        <td>72.83%</td>
+                                        
+                                        <td>56.60%</td>
+                                        
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        {% endfor %}
+                        
+                        <div class="tab-pane fade show " id="list-2" role="tabpanel" aria-labelledby="list-2-list">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="table-experience-header">
+
+                                        <th scope="col"></th>
+
+                                        
+                                        <th scope="col">2017</th>
+                                        
+                                        <th scope="col">2018</th>
+                                        
+                                        <th scope="col">2019</th>
+                                        
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="table-row">Earned Premium</td>
+
+                                        
+                                        <td>$241,391.48</td>
+                                        
+                                        <td>$182,800.81</td>
+                                        
+                                        <td>$227,753.58</td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td class="table-row">Incurred Claims</td>
+
+                                        
+                                        <td>$124,047.15</td>
+                                        
+                                        <td>$105,399.38</td>
+                                        
+                                        <td>$90,432.51</td>
+                                        
+                                    </tr>
+                                    <tr class="table-experience-loss-ratio">
+                                        <td class="table-row">Loss Ratio</td>
+
+                                        
+                                        <td>51.39%</td>
+                                        
+                                        <td>57.66%</td>
+                                        
+                                        <td>39.71%</td>
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="tab-pane fade show " id="list-3" role="tabpanel" aria-labelledby="list-3-list">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="table-experience-header">
+
+                                        <th scope="col"></th>
+
+                                        
+                                        <th scope="col">2017</th>
+                                        
+                                        <th scope="col">2018</th>
+                                        
+                                        <th scope="col">2019</th>
+                                        
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="table-row">Earned Premium</td>
+
+                                        
+                                        <td>$257,609.86</td>
+                                        
+                                        <td>$149,596.75</td>
+                                        
+                                        <td>$207,000.44</td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td class="table-row">Incurred Claims</td>
+
+                                        
+                                        <td>$109,268.85</td>
+                                        
+                                        <td>$113,468.82</td>
+                                        
+                                        <td>$107,642.89</td>
+                                        
+                                    </tr>
+                                    <tr class="table-experience-loss-ratio">
+                                        <td class="table-row">Loss Ratio</td>
+
+                                        
+                                        <td>42.42%</td>
+                                        
+                                        <td>75.85%</td>
+                                        
+                                        <td>52.00%</td>
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
 
                         <div class="overflow-auto tab-pane fade show" id="list-grp" role="tabpanel" aria-labelledby="list-grp-list">
                           <table class="table table-hover">
@@ -237,20 +371,27 @@
                                   </tr>
                               </thead>
                               <tbody>
-                                  {% for item in groups %}
+                                  
                                   <tr>
-                                      <td>{{ item.SYSTEM }}</td>
-                                      <td>{{ item.GRPNUM }}</td>
-                                      <td>{{ item.PRMGRPNAME }}</td>
-                                      <td>{{ item.GRPUID }}</td>
+                                      <td>GEN</td>
+                                      <td>0000001000</td>
+                                      <td>ABC COMPANY</td>
+                                      <td>0000000001</td>
                                   </tr>
-                                  {% endfor %}
+                                  
+                                  <tr>
+                                      <td>GEN</td>
+                                      <td>0000002000</td>
+                                      <td>SAMS SPEEDY SPROCKETS</td>
+                                      <td>0000000011</td>
+                                  </tr>
+                                  
                               </tbody>
                           </table>
                         </div>
 
-                        {% for item in utilization %}
-                        <div class="tab-pane fade show" id="list-ut-{{ forloop.counter }}" role="tabpanel" aria-labelledby="list-ut-{{ forloop.counter }}-list">
+                        
+                        <div class="tab-pane fade show" id="list-ut-1" role="tabpanel" aria-labelledby="list-ut-1-list">
                             <table class="table table-hover">
                                 <thead>
                                     <tr class="table-experience-header">
@@ -261,16 +402,78 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for row in item.records %}
+                                    
                                     <tr>
-                                        <td>{{ row.AdjBenefitDescription }}</td>
-                                        <td>{{ row.UTILIZATION }}</td>
+                                        <td class="table-row">Confinement</td>
+                                        <td>20</td>
                                     </tr>
-                                    {% endfor %}
+                                    
+                                    <tr>
+                                        <td class="table-row">Fracture</td>
+                                        <td>20</td>
+                                    </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>
-                        {% endfor %}
+                        
+                        <div class="tab-pane fade show" id="list-ut-2" role="tabpanel" aria-labelledby="list-ut-2-list">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="table-experience-header">
+
+                                        <th scope="col">Benefit Description</th>
+                                        <th scope="col">Utilization Count</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <tr>
+                                        <td class="table-row">Cancer</td>
+                                        <td>43</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="table-row">Other</td>
+                                        <td>3</td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="tab-pane fade show" id="list-ut-3" role="tabpanel" aria-labelledby="list-ut-3-list">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="table-experience-header">
+
+                                        <th scope="col">Benefit Description</th>
+                                        <th scope="col">Utilization Count</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <tr>
+                                        <td class="table-row">Total Disability</td>
+                                        <td>20</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="table-row">Partial Disability</td>
+                                        <td>7</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="table-row">Other</td>
+                                        <td>4</td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                        
 
                     </div>
                 </div>
