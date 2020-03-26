@@ -60,6 +60,7 @@ class ReportSet():
 			self.grpnums_input = list(grpnums)
 
 		self.runSeparate = runSeparate
+		self.warnings = {}
 		self.conn = conn
 
 		if reportType.upper() in ["B", "U", "E"]:
@@ -214,6 +215,25 @@ WHERE
 		return(df_utilization)
 
 
+	def __getPreviousUtilizationRuns(self, grpnums, fromdate, thrudate, conn, lag = 183):
+
+		sql = """
+SELECT *
+FROM ACT_ACTUARIALDB.TBL_UTILIZATION_LOG
+WHERE
+	GRPLIST IN ('{0}') AND
+	RUNTS + INTERVAL '{1}' DAY >= CURRENT_TIMESTAMP
+ORDER BY RUNTS DESC
+		"""
+
+		sql = sql.format(*tuple(["','".join(grpnums), str(lag)]))
+		df_log = pd.read_sql(sql, conn)
+		df_log.columns = [x.upper() for x in df_log.columns.tolist()]
+
+		if df_log.shape[0] > 0:
+			self.warnings["lastRun"] = f"Report run on {str(df_log['RUNTS'].values[0])} by {df_log['USERNAME'].values[0]}"
+
+
 	def createReportList(self, conn):
 
 		reportList = []
@@ -232,6 +252,7 @@ WHERE
 				data_input["experience"] = exp
 
 			if self.reportType in ["U", "B"]:
+				self.__getPreviousUtilizationRuns(self.grpnums_input, self.fromdate, self.thrudate, conn)
 				_ = self.__getUtilizationData(self.grpnums_input, self.fromdate, self.thrudate, conn)
 				util = self.df_utilization.groupby(["LOB", "LOBDESC", "BENEFITDESCRIPTION"], as_index = False).sum()
 				data_input["utilization"] = util
@@ -245,7 +266,8 @@ WHERE
 				"status": "Success",
 				"reportKey": self.grpnums_input,
 				"reportKeyType": "Group Numbers",
-				"title": self.title
+				"title": self.title,
+				"warnings": self.warnings
 			})
 
 			reportList.append(wrapper)
@@ -261,7 +283,8 @@ WHERE
 				"reportKeyType": "Group Numbers",
 				"title": self.title,
 				"reason": "Could not run REPORTSET",
-				"error": str(err)
+				"error": str(err),
+				"warnings": self.warnings
 			})
 			reportList.append(wrapper)
 
@@ -291,7 +314,8 @@ WHERE
 						"reportKeyType": "Group UID",
 						"title": "Unknown",
 						"reason": "Could not run REPORTSET",
-						"error": str(err)
+						"error": str(err),
+						"warnings": self.warnings
 					})
 					reportList.append(wrapper)
 					continue
@@ -307,7 +331,8 @@ WHERE
 						"reportKeyType": "Group UID",
 						"title": "Unknown Group",
 						"reason": "Could not find TITLE in single run",
-						"error": str(err)
+						"error": str(err),
+						"warnings": self.warnings
 					})
 					reportList.append(wrapper)
 					continue
@@ -325,7 +350,8 @@ WHERE
 						"reportKeyType": "Group UID",
 						"title": title,
 						"reason": "Could not find EXPERIENCE in single run",
-						"error": str(err)
+						"error": str(err),
+						"warnings": self.warnings
 					})
 					reportList.append(wrapper)
 					continue
@@ -343,7 +369,8 @@ WHERE
 						"reportKeyType": "Group UID",
 						"title": title,
 						"reason": "Could not find UTILIZATION in single run",
-						"error": str(err)
+						"error": str(err),
+						"warnings": self.warnings
 					})
 					reportList.append(wrapper)
 					continue
@@ -360,7 +387,8 @@ WHERE
 						"reportKeyType": "Group UID",
 						"title": title,
 						"reason": "Could not create single run report",
-						"error": str(err)
+						"error": str(err),
+						"warnings": self.warnings
 					})
 					reportList.append(wrapper)
 					continue
@@ -373,7 +401,8 @@ WHERE
 						"status": "Success",
 						"reportKey": grpuid,
 						"reportKeyType": "Group UID",
-						"title": title
+						"title": title,
+						"warnings": self.warnings
 					})
 					reportList.append(wrapper)
 

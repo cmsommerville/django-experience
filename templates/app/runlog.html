@@ -148,11 +148,11 @@
                       <table class="table table-hover">
                         <thead>
                           <tr>
-                            <th>Report Set ID</th>
-                            <th>Report ID</th>
+                            <th>ReportID</th>
                             <th>Report Key</th>
                             <th>Report Title</th>
                             <th>Date</th>
+                            <th>Warnings</th>
                             <th>Status</th>
                             <th>Reason</th>
                           </tr>
@@ -160,11 +160,15 @@
                         <tbody>
                           {% for report in log %}
                           <tr>
-                            <td>{{ report.log.reportSetID }}</td>
-                            <td>{{ report.log.reportID }}</td>
-                            <td>{{ report.log.reportKey }}</td>
+                            <td>{{ report.log.ID }}</td>
+                            <td>{% if report.log.reportKeyType == "Group UID" %}GUID: {% endif %}{{ report.log.reportKey }}</td>
                             <td><a href="{{ report.log.reportLink }}">{{ report.log.title }}</a></td>
                             <td>{{ report.log.runTimeStamp }}</td>
+                            <td>
+                              {% for key, val in report.log.warnings.items %}
+                                {{ val }}
+                              {% endfor %}
+                            </td>
                             <td>{{ report.log.status }}</td>
                             <td>{{ report.log.reason }}</td>
                           </tr>

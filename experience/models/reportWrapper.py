@@ -17,6 +17,7 @@ class ReportWrapper():
         self.reason = kwargs.get("reason", "")
         self.error = kwargs.get("error", "")
         self.runTimeStamp = str(datetime.datetime.now())
+        self.warnings = kwargs.get("warnings", {})
 
     def minifyKeyDisplay(self, input, front = 3, back = 1):
         if not isinstance(input, list):
@@ -30,6 +31,7 @@ class ReportWrapper():
         output = {
             "status": self.status,
             "log": {
+                "ID": '-'.join([str(self.reportSetID + 1), str(self.reportID + 1)]), 
                 "reportSetID": self.reportSetID,
                 "reportID": self.reportID,
                 "reportKey": self.reportKey,
@@ -39,7 +41,8 @@ class ReportWrapper():
                 "runTimeStamp": self.runTimeStamp,
                 "status": self.status,
                 "reason": self.reason,
-                "error": self.error
+                "error": self.error,
+                "warnings": self.warnings
             }}
 
         return(output)
